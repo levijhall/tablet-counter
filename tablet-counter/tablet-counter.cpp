@@ -7,7 +7,7 @@
 using namespace cv;
 using namespace std;
 
-//Global Variables
+//Global Variables------------------//
 int shift_slider_max = 180;
 int shift_slider = 0;
 int shift_slider_old = shift_slider;
@@ -21,13 +21,12 @@ int satration_slider_min = 68;
 int value_slider_max = 182;
 int value_slider_min = 119;
 
-//file paths
-#define INPUT_FILE		"tablets3.jpg"
-#define OUT_FOLDER_PATH string("")
-
-//image store
 Mat src, tmp, hsv, mask;
 RNG rng(12345);
+//---------------------------------//
+
+#define INPUT_FILE			"tablets3.jpg"
+#define OUT_FOLDER_PATH		string("")
 
 void on_trackbar(int, void*)
 {
@@ -54,10 +53,10 @@ void on_trackbar(int, void*)
 		shift_slider_old = shift_slider;
 	}
 
-	Scalar ORANGE_MIN = Scalar(hue_slider_min, satration_slider_min, value_slider_min);
-	Scalar ORANGE_MAX = Scalar(hue_slider_max, satration_slider_max, value_slider_max);
+	Scalar COLOR_MIN = Scalar(hue_slider_min, satration_slider_min, value_slider_min);
+	Scalar COLOR_MAX = Scalar(hue_slider_max, satration_slider_max, value_slider_max);
 
-	inRange(hsv, ORANGE_MIN, ORANGE_MAX, mask);
+	inRange(hsv, COLOR_MIN, COLOR_MAX, mask);
 	imshow("Ranged HSV", mask);
 }
 
